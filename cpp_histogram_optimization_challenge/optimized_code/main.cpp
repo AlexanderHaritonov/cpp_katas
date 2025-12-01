@@ -52,7 +52,7 @@ int main() {
 	// test normalize
 	start = std::clock();
 	for (int i = 0; i < iterations; i++) {
-		beliefs = normalize(beliefs);
+		normalize(beliefs);
 	}
 	duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 	std::cout << "duration milliseconds normalize " << 1000 * duration << '\n';

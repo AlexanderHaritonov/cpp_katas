@@ -2,37 +2,23 @@
 using namespace std;
 
 // OPTIMIZATION: Pass variable by reference
-vector< vector<float> > normalize(vector< vector <float> > grid) {
-
+void normalize(vector< vector <float> >& grid) {
+    int height = grid.size();
+    int width = grid[0].size();
   	// OPTIMIZATION: Avoid declaring and defining 				// intermediate variables that are not needed.
 	float total = 0.0;
-	int i;
-	int j;
-	vector<float> row;
-	vector<float> newRow;
-	float oldProb;
-	for (i = 0; i < grid.size(); i++)
+	for (int i = 0; i <height; i++)
 	{
-		row = grid[i];
-		for (j=0; j< row.size(); j++)
+		const vector<float>& row = grid[i];
+		for (int j=0; j< width; j++)
 		{
-			oldProb = row[j];
-			total += oldProb;
+			total += row[j]; // oldProb
 		}
 	}
 
-	vector< vector<float> > newGrid;
-
-	for (i = 0; i < grid.size(); i++) {
-		vector<float> row = grid[i];
-		newRow.clear();
-		for (j=0; j< row.size(); j++) {
-			float oldProb = row[j];
-			float newProb = oldProb / total;
-			newRow.push_back(newProb);
+	for (int i = 0; i < height; i++) {
+		for (int j=0; j< width; j++) {
+			grid[i][j] = grid[i][j] / total; // newProb
 		}
-		newGrid.push_back(newRow);
 	}
-
-	return newGrid;
 }
